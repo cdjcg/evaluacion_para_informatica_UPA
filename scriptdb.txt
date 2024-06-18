@@ -1,0 +1,30 @@
+create database evaluacion_daniel_cuevas;
+
+use evaluacion_daniel_cuevas;
+
+show tables;
+
+create table estado_usuario (id int auto_increment primary key, titulo varchar(50), clave varchar(50));
+
+insert into estado_usuario (titulo, clave) values ('Activo', 'activo'), ('Baja Permanente', 'baja');
+
+select * from estado_usuario;
+
+create table usuario (id int auto_increment primary key, 
+	nombre varchar(255),
+    fecha date,
+    telefono varchar(50),
+    correo varchar(70),
+    creacion date,
+    estadoUsuarioId int,
+    foreign key (estadoUsuarioId) references estado_usuario(id)
+);
+
+select * from usuario;
+
+update usuario set creacion='2024-06-16' where id=2;
+insert into usuario (nombre, fecha, telefono, correo, creacion, estadoUsuarioId) values ('PedritoBaja', '2022-01-01', '86987458', 'pedrito_baja@gmail.com', '2022-01-01', 2);
+insert into usuario (nombre, fecha, telefono, correo, creacion, estadoUsuarioId) values ('JuanAyer', '2024-06-16', '75891247', 'juan_ayer@gmail.com', '2024-06-17', 1);
+insert into usuario (nombre, fecha, telefono, correo, creacion, estadoUsuarioId) values ('AngelAyer', '2024-06-16', '41586897', 'angel_ayer@gmail.com', '2024-06-16', 1);
+insert into usuario (nombre, fecha, telefono, correo, creacion, estadoUsuarioId) values ('JoseMesAnterior', '2024-05-16', '85749632', 'jose_mes_anterior@gmail.com', '2024-05-16', 1);
+insert into usuario (nombre, fecha, telefono, correo, creacion, estadoUsuarioId) values ('MiguelMesAnterior', '2024-05-16', '23568974', 'miguel_mes_anterior@gmail.com', '2024-05-16', 1);
