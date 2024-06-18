@@ -1,0 +1,54 @@
+<form action="" method="post" onsubmit="return validacion()">
+    <label for="nombreUsuario">Usuario:</label>
+    <input type="text" id="nombreUsuario" name="nombreUsuario">
+    <label for="fecha">Fecha Nacimiento:</label>
+    <input type="date" id="fecha" value="2024-06-17" min="1900-01-01" max="2024-06-17">
+    <label for="numeroTelefono">Numero de Telefono:</label>
+    <input type="text" id="numeroTelefono" name="numeroTelefono">
+    <label for="correoUsuario">CorreoElectronico:</label>
+    <input type="text" id="correoUsuario" name="correoUsuario">
+    <button type="button" onclick="validacion()">Enviar</button>
+</form>
+<script>
+    function validacion(){
+        let valNombre = validaNombre(document.getElementById("nombreUsuario").value);
+        let valTelefono = validaTelefono(document.getElementById("numeroTelefono").value);
+        let valCorreo = validaCorreo(document.getElementById("correoUsuario").value);
+
+        if (valNombre && valTelefono && valCorreo) {
+            console.log('todo bien');
+        } else {
+            console.log('fallo algo');
+        }
+    }
+
+    function validaNombre(nombrePorValidar){
+        let exp = /[a-zA-Z]/;
+
+        if (exp.test(nombrePorValidar)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function validaTelefono(telefonoPorValidar){
+        let exp = /[0-9]/;
+
+        if (exp.test(telefonoPorValidar)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function validaCorreo(correoPorValidar){
+        let exp = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+        if (exp.test(correoPorValidar)) {
+            return true;
+        }
+
+        return false;
+    }
+</script>
